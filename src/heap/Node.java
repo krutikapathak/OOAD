@@ -1,71 +1,66 @@
 package heap;
 
 public class Node {
-		Node left;
-		Node right;
-		Node parent;
-		int val;
-		static final int COUNT = 10;
-		
-		public Node(int val) {
-			this.val = val;
-		}
-		
-		int findMax(int a, int b){
-		    if(a >= b)
-		      return a;
-		    else
-		      return b;
-		  }
-		
-		int findHeight(Node root){
-		    if(root == null)
-		      return 0;
+	Node left;
+	Node right;
+	int val;
+	static final int count = 10;
 
-		    return findMax(findHeight(root.left), findHeight(root.right)) + 1;
-		  }
-		
-//		int findLeftHeight(Node root){
-//		    if(root == null)
-//		      return 0;
-//
-//		    return (findLeftHeight(root.left)) + 1;
-//		  }
-//		
-//		int findRightHeight(Node root){
-//		    if(root == null)
-//		      return 0;
-//
-//		    return (findRightHeight(root.right)) + 1;
-//		  }
-		
-		static void print2DUtil(Node root, int space)
-		{
-		    // Base case
-		    if (root == null)
-		        return;
-		 
-		    // Increase distance between levels
-		    space += COUNT;
-		 
-		    // Process right child first
-		    print2DUtil(root.right, space);
-		 
-		    // Print current node after space
-		    // count
-		    System.out.print("\n");
-		    for (int i = COUNT; i < space; i++)
-		        System.out.print(" ");
-		    System.out.print(root.val + "\n");
-		 
-		    // Process left child
-		    print2DUtil(root.left, space);
+	public Node(int val) {
+		this.val = val;
+	}
+
+	int findMax(int a, int b) {
+		if (a >= b)
+			return a;
+		else
+			return b;
+	}
+
+	int findHeight(Node root) {
+		if (root == null)
+			return 0;
+
+		return findMax(findHeight(root.left), findHeight(root.right)) + 1;
+	}
+
+	void postOrder(Node node) {
+		if (node == null)
+			return;
+
+		postOrder(node.left);
+
+		postOrder(node.right);
+
+		System.out.print(node.val + " ");
+	}
+
+	void preOrder(Node node) {
+		if (node == null)
+			return;
+
+		if (node.val % 2 != 0) {
+			System.out.print(node.val + " ");
 		}
-		 
-		// Wrapper over print2DUtil()
-		static void print2D(Node root)
-		{
-		    // Pass initial space count as 0
-		    print2DUtil(root, 0);
-		}
+
+		preOrder(node.left);
+
+		preOrder(node.right);
+	}
+
+	static void drawTree(Node root, int space) {
+		if (root == null)
+			return;
+
+		space += count;
+
+		drawTree(root.right, space);
+
+		System.out.print("\n");
+		for (int i = count; i < space; i++)
+			System.out.print(" ");
+		System.out.print(root.val + "\n");
+
+		drawTree(root.left, space);
+	}
 }
