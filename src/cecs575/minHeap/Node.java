@@ -48,7 +48,7 @@ public class Node {
 	}
 	
 	// method to find maximum of left or right sub-heap height 
-	public int findMaxHeight(int lHeight, int rHeight) {
+	protected int findMaxHeight(int lHeight, int rHeight) {
 		if (lHeight >= rHeight)
 			return lHeight;
 		else
@@ -56,7 +56,7 @@ public class Node {
 	}
 
 	// method to find height for the given root
-	public int findHeight(Node root) {
+	protected int findHeight(Node root) {
 		if (root == null)
 			return 0;
 
@@ -64,7 +64,7 @@ public class Node {
 	}
 	
 	// method to traverse min heap
-	public List<Integer> traverseMinHeap(Node node, String indicator, List<Integer> orderList) {
+	protected List<Integer> traverseMinHeap(Node node, String indicator, List<Integer> orderList) {
 		if (node == null)
 			return orderList;
 		

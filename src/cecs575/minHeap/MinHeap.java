@@ -31,7 +31,7 @@ public class MinHeap {
 	}
 
 	// method to add integers to min heap
-	public Node insert(Node root, int num) {
+	protected Node insert(Node root, int num) {
 		if (root == null) {
 			root = new Node(num);
 			return root;
@@ -56,7 +56,7 @@ public class MinHeap {
 	}
 	
 	// method to swap larger root value with lesser value
-	public int swapNode(Node root, int num) {
+	protected int swapNode(Node root, int num) {
 		int temp = root.getNodeVal();
 		root.setNodeVal(num);
 		num = temp;
