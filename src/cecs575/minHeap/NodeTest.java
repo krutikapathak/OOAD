@@ -1,4 +1,4 @@
-package heap;
+package cecs575.minHeap;
 
 import static org.junit.Assert.*;
 
@@ -11,13 +11,18 @@ import org.junit.Test;
  * Team members: Krutika Pathak(026737072) and Shiva Singh(026774434)
  *
  */
+
+//Test class for Node
 public class NodeTest {
 	Node node = new Node();
+	
+	// test to verify the calculation of maximum height
 	@Test
-	public void testFindMax() {
-		assertEquals(4, node.findMax(3, 4));
+	public void testFindMaxHeight() {
+		assertEquals(4, node.findMaxHeight(3, 4));
 	}
-
+	
+	// test to verify the correctness of left sub-heap height
 	@Test
 	public void testFindHeightLeft() {
 		Node root = new Node(10);
@@ -26,6 +31,7 @@ public class NodeTest {
 		assertEquals(1, node.findHeight(root.getLeft()));
 	}
 	
+	// test to verify the correctness of right sub-heap height
 	@Test
 	public void testFindHeightRight() {
 		Node root = new Node(10);
@@ -38,6 +44,7 @@ public class NodeTest {
 		assertEquals(2, node.findHeight(root.getRight()));
 	}
 	
+	// test to verify the correctness of min-heap height
 	@Test
 	public void testFindHeight() {
 		Node root = new Node(10);
@@ -53,7 +60,8 @@ public class NodeTest {
 		root.getRight().setLeft(fifth);
 		assertEquals(3, node.findHeight(root));
 	}
-
+	
+	// test to verify the correctness of post order traversal
 	@Test
 	public void testPostOrder() {
 		Node root = new Node(10);
@@ -68,12 +76,13 @@ public class NodeTest {
 		postOrderList.add(25);
 		postOrderList.add(10);
 		
-		orderList = node.prePostOrder(root, "post", orderList);
+		orderList = node.traverseMinHeap(root, "post", orderList);
 		for(int i=0; i<orderList.size(); i++) {
 			assertEquals(postOrderList.get(i), orderList.get(i));
 		}
 	}
 	
+	// test to verify the correctness of pre order traversal for odd numbers
 	@Test
 	public void testPreOrder() {
 		Node root = new Node(10);
@@ -87,7 +96,7 @@ public class NodeTest {
 		preOrderList.add(25);
 		preOrderList.add(35);
 		
-		orderList = node.prePostOrder(root, "pre", orderList);
+		orderList = node.traverseMinHeap(root, "pre", orderList);
 		for(int i=0; i<orderList.size(); i++) {
 			assertEquals(preOrderList.get(i), orderList.get(i));
 		}
